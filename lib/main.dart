@@ -13,9 +13,47 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+          highlightColor: const Color(0xffF50000), //red
+          backgroundColor: const Color(0xffE5E5E5), //white greyish
+          primaryColor: const Color(0xffea5a03), //orange
+          scaffoldBackgroundColor: const Color(0xffE5E5E5),
+          textTheme: const TextTheme(
+            headline1: TextStyle(
+                fontSize: 20.0,
+                fontFamily: 'RobotoSlab',
+                fontWeight: FontWeight.w600),
+            headline2: TextStyle(
+                fontSize: 18.0,
+                fontFamily: 'RobotoSlab',
+                fontWeight: FontWeight.w600),
+            headline3: TextStyle(
+                fontSize: 17.0,
+                fontFamily: 'RobotoSlab',
+                fontWeight: FontWeight.normal),
+            headline4: TextStyle(
+                fontSize: 19.0,
+                fontFamily: 'RobotoSlab',
+                fontWeight: FontWeight.normal),
+            headline5: TextStyle(
+                fontSize: 21.0,
+                fontFamily: 'RobotoSlab',
+                fontWeight: FontWeight.normal),
+            headline6: TextStyle(
+                color: Colors.black, fontSize: 26, fontWeight: FontWeight.bold),
+            bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+          ),
+          appBarTheme: const AppBarTheme(
+              iconTheme: IconThemeData(color: Color(0xffF50000)),
+              elevation: 0.5,
+              color: Color(0xffE5E5E5),
+              centerTitle: true,
+              titleTextStyle: TextStyle(
+                fontFamily: 'LobsterTwo',
+                fontWeight: FontWeight.w600,
+                fontSize: 28,
+                color: Color(0xffF50000),
+              ))),
+      home: const MyHomePage(title: 'Heda Saathi'),
     );
   }
 }
@@ -54,6 +92,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final dW = MediaQuery.of(context).size.width;
+    final dH = MediaQuery.of(context).size.height;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -61,29 +101,26 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+      drawer: Drawer(
+        child: Container(),
       ),
+      appBar: AppBar(
+          title: Text(
+            widget.title,
+            style: Theme.of(context).appBarTheme.titleTextStyle,
+          ),
+          actions: [
+            Row(
+              children: [
+                const Icon(Icons.notifications),
+                SizedBox(width: dW * 0.03),
+                const Icon(Icons.search),
+                SizedBox(width: dW * 0.04),
+              ],
+            )
+          ]),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
